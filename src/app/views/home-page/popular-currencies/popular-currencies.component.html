@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <div class="row">
+    <div
+      class="col-4 p-3"
+      *ngFor="let currency of currencyConverted.data | keyvalue"
+    >
+      <div class="card text-bg-light mb-3">
+        <div class="card-header">{{ currency.key }}</div>
+        <div class="card-body">
+          <h5 class="card-title">1 {{ currencyWillConvert.from }}</h5>
+          <p class="card-text">{{ currency.value.value }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

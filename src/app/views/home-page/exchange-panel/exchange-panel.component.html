@@ -1,0 +1,98 @@
+<div class="container mt-5">
+  <h1 class="mb-3 fs-4">Currency Exchanger</h1>
+  <form
+    class="px-5 py-4 border"
+    #exchangeDetails="ngForm"
+    (ngSubmit)="onSubmit(exchangeDetails.value)"
+  >
+    <div class="row">
+      <div class="col-4">
+        <label class="form-label" for="amount">Amount</label>
+        <input
+          class="form-control text-center"
+          type="number"
+          name="amount"
+          id="amount"
+          placeholder="Enter a Number"
+          min="1"
+          max="1000000000000"
+          required
+          [(ngModel)]="currencyWillConvert.amount"
+          #amount="ngModel"
+        />
+      </div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-5">
+            <label class="form-label" for="from">From</label>
+            <select
+              id="from"
+              class="form-select"
+              name="from"
+              ngModel="EUR"
+              #from="ngModel"
+              required
+            >
+              <option *ngFor="let currency of currencies" [value]="currency">
+                {{ currency | uppercase }}
+              </option>
+            </select>
+          </div>
+          <div class="col-2 d-flex align-items-center justify-content-center">
+            <fa-icon
+              [icon]="faRotate"
+              class="fa-2xl"
+              (click)="swapCurrencies()"
+            ></fa-icon>
+          </div>
+          <div class="col-5">
+            <label class="form-label" for="to">To</label>
+            <select
+              id="to"
+              class="form-select"
+              name="to"
+              ngModel="USD"
+              #to="ngModel"
+              required
+            >
+              <option *ngFor="let currency of currencies" [value]="currency">
+                {{ currency | uppercase }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="d-grid my-4">
+          <button class="btn btn-primary" type="submit">Convert</button>
+        </div>
+      </div>
+      <div class="col-4 align-self-center">
+        <p class="border p-2 rounded text-center mb-0">
+          1.00 {{ currencyWillConvert.from | uppercase }} = {{ oneCoin }}
+          {{ currencyWillConvert.to | uppercase }}
+        </p>
+      </div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-7">
+            <p class="fs-2 p-3 border rounded text-center mb-0">
+              {{ totalConverted }} {{ currencyWillConvert.to | uppercase }}
+            </p>
+          </div>
+          <div class="col-5 align-self-center">
+            <div class="d-grid">
+              <a routerLink="/details/EURtoUSD" class="btn btn-primary"
+                >More Details</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Popular Currencies Component -->
+<app-popular-currencies
+  [currencyConverted]="currencyConverted"
+  [currencyWillConvert]="currencyWillConvert"
+></app-popular-currencies>
