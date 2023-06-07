@@ -72,12 +72,16 @@ export class ExchangePanelComponent implements OnInit {
 
   totalConverted: number = 0;
   oneCoin: number = 0;
+  // from: string = "EUR";
+  // to:string = "USD";
 
   constructor(private apiService: ApiService) {}
+
 
   ngOnInit(): void {
     this.apiService.getData(this.currencyWillConvert.from).subscribe({
       next: (res) => {
+        this.apiService.setData(res);
         this.currencyConverted = res;
         this.totalConverted = this.oneCoin = res.data['USD'].value;
       },

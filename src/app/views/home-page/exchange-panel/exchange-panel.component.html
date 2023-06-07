@@ -29,7 +29,7 @@
               id="from"
               class="form-select"
               name="from"
-              ngModel="EUR"
+              [(ngModel)]="currencyWillConvert.from"
               #from="ngModel"
               required
             >
@@ -51,7 +51,7 @@
               id="to"
               class="form-select"
               name="to"
-              ngModel="USD"
+              [(ngModel)]="currencyWillConvert.to"
               #to="ngModel"
               required
             >
