@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CurrencyConverted } from '../interfaces/currency-converted';
-import { Observable } from 'rxjs';
+import { StortedData } from '../interfaces/storted-data';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient) { }
 
-  currencyConverted: CurrencyConverted = {
+  storedData: StortedData = {
     data: {
       EUR: {
         code: '',
@@ -47,8 +47,11 @@ export class ApiService {
         code: '',
         value: 0
       }
-    }
-  }
+    },
+    amount: 0,
+    from: '',
+    to: ''
+  };
 
   getData(currency: string) {
     return this.http.get<CurrencyConverted>(
@@ -57,12 +60,12 @@ export class ApiService {
     );
   }
 
-  setData(data :CurrencyConverted) {
-    this.currencyConverted = data;
+  setData(data: any) {
+    this.storedData = data;
   }
 
   getStoredData() {
-    return this.currencyConverted;
+    return this.storedData;
   }
 
   getSpecificCurrency() {
