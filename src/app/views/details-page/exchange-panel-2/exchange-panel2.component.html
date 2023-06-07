@@ -1,5 +1,8 @@
 <div class="container mt-5">
-    <h1 class="mb-3 fs-4">Currency Exchanger</h1>
+    <div class="head-details d-flex justify-content-between">
+        <h1 class="mb-3 fs-4">{{storedData.from}} <p>{{displayedCurrency}}</p></h1>
+        <button class="btn btn-primary ms-auto" (click)="onBack()">Back to Home</button>
+    </div>
     <form
       class="px-5 py-4 border"
       #exchangeDetails="ngForm"
@@ -17,7 +20,7 @@
             min="1"
             max="1000000000000"
             required
-            [(ngModel)]="currencyWillConvert.amount"
+            [(ngModel)]="storedData.amount"
             #amount="ngModel"
           />
         </div>
@@ -29,7 +32,7 @@
                 id="from"
                 class="form-select"
                 name="from"
-                [(ngModel)]="currencyWillConvert.from"
+                [(ngModel)]="storedData.from"
                 #from="ngModel"
                 required
               >
@@ -51,7 +54,7 @@
                 id="to"
                 class="form-select"
                 name="to"
-                [(ngModel)]="currencyWillConvert.to"
+                [(ngModel)]="storedData.to"
                 #to="ngModel"
                 required
               >
@@ -67,25 +70,14 @@
         </div>
         <div class="col-4 align-self-center">
           <p class="border p-2 rounded text-center mb-0">
-            1.00 {{ currencyWillConvert.from | uppercase }} = {{ oneCoin }}
-            {{ currencyWillConvert.to | uppercase }}
+            1.00 {{ storedData.from | uppercase }} = {{ oneCoin }}
+            {{ storedData.to | uppercase }}
           </p>
         </div>
         <div class="col-8">
-          <div class="row">
-            <div class="col-7">
               <p class="fs-2 p-3 border rounded text-center mb-0">
-                {{ totalConverted }} {{ currencyWillConvert.to | uppercase }}
+                {{ totalConverted }} {{ storedData.to | uppercase }}
               </p>
-            </div>
-            <div class="col-5 align-self-center">
-              <div class="d-grid">
-                <a routerLink="/details/EURtoUSD" class="btn btn-primary"
-                  >More Details</a
-                >
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </form>

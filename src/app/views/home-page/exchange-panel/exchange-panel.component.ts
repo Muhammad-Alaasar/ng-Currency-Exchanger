@@ -95,7 +95,6 @@ export class ExchangePanelComponent implements OnInit {
   onSubmit(formData: CurrencyWillConvert) {
     this.currencyWillConvert = formData;
     let toConvert: string = formData.to;
-    let currenciesRates: {} = {};
 
     this.apiService.getData(formData.from).subscribe({
       next: (res) => {

@@ -1,6 +1,6 @@
-import { CurrencyConverted } from 'src/app/interfaces/currency-converted';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { StortedData } from 'src/app/interfaces/storted-data';
 
 @Component({
   selector: 'app-details-page',
@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class DetailsPageComponent implements OnInit{
 
-  currencyConverted:CurrencyConverted = {
+  storedData: StortedData = {
     data: {
       EUR: {
         code: '',
@@ -47,12 +47,15 @@ export class DetailsPageComponent implements OnInit{
         code: '',
         value: 0
       }
-    }
+    },
+    amount: 0,
+    from: '',
+    to: ''
   }
 
   constructor(private apiService: ApiService) { }
   ngOnInit(): void {
-    this.currencyConverted = this.apiService.getStoredData()
+    this.storedData = this.apiService.getStoredData()
   }
 
 }

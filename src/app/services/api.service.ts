@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CurrencyConverted } from '../interfaces/currency-converted';
 import { StortedData } from '../interfaces/storted-data';
+import { CurrenciesFullName } from '../interfaces/currencies-full-name';
 
 @Injectable({
   providedIn: 'root',
@@ -75,8 +76,9 @@ export class ApiService {
   }
 
   getCurrenicesFullName() {
-    return this.http.get(
-      'https://data.fixer.io/api/symbols?access_key=1534c899e9e72b9a64c65c94e991c350'
+    return this.http.get<CurrenciesFullName>(
+      'https://api.currencyapi.com/v3/currencies?apikey=1xA1ZR6k0M2VB5Ey8TsdslqkhMuZcgAadHYc9InX&currencies=USD%2CGBP%2CJPY%2CEUR%2CAUD%2CCAD%2CCHF%2CCNY%2CHKD'
+      // 'https://data.fixer.io/api/symbols?access_key=1534c899e9e72b9a64c65c94e991c350'
     );
   }
 }
