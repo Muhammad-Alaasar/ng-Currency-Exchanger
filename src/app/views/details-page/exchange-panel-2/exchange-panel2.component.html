@@ -1,84 +1,91 @@
 <div class="container mt-5">
-    <div class="head-details d-flex justify-content-between mb-3">
-        <h1 class="fs-4">{{storedData.from}} - <span class="fs5">{{displayedCurrency}}</span></h1>
-        <button class="btn btn-primary ms-auto align-self-center" (click)="onBack()">Back to Home</button>
-    </div>
-    <form
-      class="px-5 py-4 border"
-      #exchangeDetails="ngForm"
-      (ngSubmit)="onSubmit(exchangeDetails.value)"
+  <div class="head-details d-flex justify-content-between mb-3">
+    <h1 class="fs-4">
+      {{ storedData.from }} - <span class="fs5">{{ displayedCurrency }}</span>
+    </h1>
+    <button
+      class="btn btn-primary ms-auto align-self-center"
+      (click)="onBack()"
     >
-      <div class="row">
-        <div class="col-4">
-          <label class="form-label" for="amount">Amount</label>
-          <input
-            class="form-control text-center"
-            type="number"
-            name="amount"
-            id="amount"
-            placeholder="Enter a Number"
-            min="1"
-            max="1000000000000"
-            required
-            [(ngModel)]="storedData.amount"
-            #amount="ngModel"
-          />
-        </div>
-        <div class="col-8">
-          <div class="row">
-            <div class="col-5">
-              <label class="form-label" for="from">From</label>
-              <select
-                id="from"
-                class="form-select"
-                name="from"
-                [(ngModel)]="storedData.from"
-                #from="ngModel"
-                required
-              >
-                <option *ngFor="let currency of currencies" [value]="currency">
-                  {{ currency | uppercase }}
-                </option>
-              </select>
-            </div>
-            <div class="col-2 d-flex align-items-center justify-content-center">
-              <fa-icon
-                [icon]="faRotate"
-                class="fa-2xl"
-                (click)="swapCurrencies()"
-              ></fa-icon>
-            </div>
-            <div class="col-5">
-              <label class="form-label" for="to">To</label>
-              <select
-                id="to"
-                class="form-select"
-                name="to"
-                [(ngModel)]="storedData.to"
-                #to="ngModel"
-                required
-              >
-                <option *ngFor="let currency of currencies" [value]="currency">
-                  {{ currency | uppercase }}
-                </option>
-              </select>
-            </div>
+      Back to Home
+    </button>
+  </div>
+  <form
+    class="px-5 py-4 border"
+    #exchangeDetails="ngForm"
+    (ngSubmit)="onSubmit(exchangeDetails.value)"
+  >
+    <div class="row">
+      <div class="col-4">
+        <label class="form-label" for="amount">Amount</label>
+        <input
+          class="form-control text-center"
+          type="number"
+          name="amount"
+          id="amount"
+          placeholder="Enter a Number"
+          min="1"
+          max="1000000000000"
+          required
+          [(ngModel)]="storedData.amount"
+          #amount="ngModel"
+        />
+      </div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-5">
+            <label class="form-label" for="from">From</label>
+            <select
+              id="from"
+              class="form-select"
+              name="from"
+              [(ngModel)]="storedData.from"
+              #from="ngModel"
+              required
+            >
+              <option *ngFor="let currency of currencies" [value]="currency">
+                {{ currency | uppercase }}
+              </option>
+            </select>
           </div>
-          <div class="d-grid my-4">
-            <button class="btn btn-primary" type="submit">Convert</button>
+          <div class="col-2 d-flex align-items-center justify-content-center">
+            <fa-icon
+              [icon]="faRotate"
+              class="fa-2xl"
+              (click)="swapCurrencies()"
+            ></fa-icon>
+          </div>
+          <div class="col-5">
+            <label class="form-label" for="to">To</label>
+            <select
+              id="to"
+              class="form-select"
+              name="to"
+              [(ngModel)]="storedData.to"
+              #to="ngModel"
+              required
+            >
+              <option *ngFor="let currency of currencies" [value]="currency">
+                {{ currency | uppercase }}
+              </option>
+            </select>
           </div>
         </div>
-        <div class="col-4 align-self-center">
-          <p class="border p-2 rounded text-center mb-0">
-            1.00 {{ storedData.from | uppercase }} = {{ oneCoin }}
-            {{ storedData.to | uppercase }}
-          </p>
-        </div>
-        <div class="col-8">
-              <p class="fs-2 p-3 border rounded text-center mb-0">
-                {{ totalConverted }} {{ storedData.to | uppercase }}
-              </p>
+        <div class="d-grid my-4">
+          <button class="btn btn-primary" type="submit">Convert</button>
         </div>
       </div>
-    </form>
-  </div>
+      <div class="col-4 align-self-center">
+        <p class="border p-2 rounded text-center mb-0">
+          1.00 {{ storedData.from | uppercase }} = {{ oneCoin }}
+          {{ storedData.to | uppercase }}
+        </p>
+      </div>
+      <div class="col-8">
+        <p class="fs-2 p-3 border rounded text-center mb-0">
+          {{ totalConverted }} {{ storedData.to | uppercase }}
+        </p>
+      </div>
+    </div>
+  </form>
+</div>

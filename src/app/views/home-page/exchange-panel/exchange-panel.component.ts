@@ -84,7 +84,7 @@ export class ExchangePanelComponent implements OnInit {
         this.apiService.setData({
           ...res,
           ...this.currencyWillConvert,
-          totalConverted: this.totalConverted
+          totalConverted: this.totalConverted,
         });
       },
       error: (error) => console.log(error),
@@ -99,16 +99,16 @@ export class ExchangePanelComponent implements OnInit {
       next: (res) => {
         type CurreniesRates = keyof typeof this.currencyConverted.data;
         let toValue = toConvert as CurreniesRates;
-        
+
         this.currencyConverted = res;
         this.totalConverted =
-        formData.amount * this.currencyConverted.data[toValue]['value'];
+          formData.amount * this.currencyConverted.data[toValue]['value'];
         this.oneCoin = this.currencyConverted.data[toValue]['value'];
 
         this.apiService.setData({
           ...res,
           ...this.currencyWillConvert,
-          totalConverted: this.totalConverted
+          totalConverted: this.totalConverted,
         });
       },
       error: (error) => console.log(error),
