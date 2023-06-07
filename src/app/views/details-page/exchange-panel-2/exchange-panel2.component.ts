@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
 import { CurrenciesFullName } from 'src/app/interfaces/currencies-full-name';
 import { CurrencyWillConvert } from 'src/app/interfaces/currency-will-convert';
-import { StortedData } from 'src/app/interfaces/storted-data';
+import { StoredData } from 'src/app/interfaces/stored-data';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ExchangePanel2Component implements OnInit {
   
   constructor(private apiService: ApiService, private route: Router){}
 
-  @Input() storedData: StortedData = {
+  @Input() storedData: StoredData = {
     data: {
       EUR: {
         code: '',
@@ -56,7 +56,8 @@ export class ExchangePanel2Component implements OnInit {
     },
     amount: 0,
     from: '',
-    to: ''
+    to: '',
+    totalConverted: 0
   }
 
   currenciesFullName :CurrenciesFullName = {
@@ -163,10 +164,15 @@ export class ExchangePanel2Component implements OnInit {
   ngOnInit(): void {
     this.apiService.getCurrenicesFullName().subscribe({
       next: res => {
+        this.currenciesFullName = res
         type DisplayedCurrency = keyof typeof res.data
-        const initValue = this.storedData.from as DisplayedCurrency
-        this.displayedCurrency = res.data[initValue].name
-        this.currenciesFullName = res},
+        const fromValue = this.storedData.from as DisplayedCurrency
+        this.displayedCurrency = res.data[fromValue].name
+        type OneCoin = keyof typeof res.data
+        const toValue = this.storedData.to as DisplayedCurrency
+        this.oneCoin = this.storedData.data[toValue].value
+        this.totalConverted = this.storedData.totalConverted
+      },
       error: error => console.log(error)
     })
   }

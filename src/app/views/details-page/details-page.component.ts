@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { StortedData } from 'src/app/interfaces/storted-data';
+import { StoredData } from 'src/app/interfaces/stored-data';
 
 @Component({
   selector: 'app-details-page',
@@ -9,7 +9,7 @@ import { StortedData } from 'src/app/interfaces/storted-data';
 })
 export class DetailsPageComponent implements OnInit{
 
-  storedData: StortedData = {
+  storedData: StoredData = {
     data: {
       EUR: {
         code: '',
@@ -50,7 +50,8 @@ export class DetailsPageComponent implements OnInit{
     },
     amount: 0,
     from: '',
-    to: ''
+    to: '',
+    totalConverted: 0
   }
 
   constructor(private apiService: ApiService) { }

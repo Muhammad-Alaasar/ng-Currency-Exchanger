@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CurrencyConverted } from '../interfaces/currency-converted';
-import { StortedData } from '../interfaces/storted-data';
+import { StoredData } from '../interfaces/stored-data';
 import { CurrenciesFullName } from '../interfaces/currencies-full-name';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { CurrenciesFullName } from '../interfaces/currencies-full-name';
 export class ApiService {
   constructor(private http: HttpClient) { }
 
-  storedData: StortedData = {
+  storedData: StoredData = {
     data: {
       EUR: {
         code: '',
@@ -51,7 +51,8 @@ export class ApiService {
     },
     amount: 0,
     from: '',
-    to: ''
+    to: '',
+    totalConverted: 0
   };
 
   getData(currency: string) {
